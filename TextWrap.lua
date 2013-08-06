@@ -85,6 +85,9 @@ function TextWrap:setText(text)
 			last = last + letterChunks
 		end
 		local line = TextField.new(self.font, part)
+		if line.enableBaseLine then --GiderosCodingEasy hack
+			line:enableBaseLine()
+		end
 		line:setLetterSpacing(self.letterSpacing)
 		line:setTextColor(self.textColor)
 		if self.align == "left" or (newLine and self.align == "justify") then
@@ -111,6 +114,9 @@ function TextWrap:setText(text)
 				local lastPos = 0
 				for wordString in part:gmatch("[^%s]+") do 
 					local word = TextField.new(self.font, wordString)
+					if word.enableBaseLine then --GiderosCodingEasy hack
+						word:enableBaseLine()
+					end
 					word:setLetterSpacing(self.letterSpacing)
 					word:setTextColor(self.textColor)
 					self:addChild(word)
